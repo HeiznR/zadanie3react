@@ -4,8 +4,8 @@ import { IResponseData } from "../../types/IResponseData";
 import {
     fetchingDataError,
     fetchingDataSucces,
+    setUpQuotes,
 } from "../reducers/fetchingDataReducer";
-import { setUpQuotes } from "../reducers/setUpQuotesReducer";
 
 export const fetchData = createAsyncThunk(
     "fetchingDataReducer/fetchData",
@@ -13,7 +13,7 @@ export const fetchData = createAsyncThunk(
         try {
             const response = await axios.get<IResponseData[]>(url);
             await dispatch(fetchingDataSucces(response.data));
-            await dispatch(setUpQuotes(response.data));
+            await dispatch(setUpQuotes(1));
         } catch (error) {
             dispatch(fetchingDataError("No data found under this link"));
         }
