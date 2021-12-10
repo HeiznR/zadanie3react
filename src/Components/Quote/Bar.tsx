@@ -1,17 +1,18 @@
-import React from "react";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useEffect } from "react";
+import { fetchData } from "../../redux/actions/fetchData";
+import useQuote from "../../hooks/useQuote";
 
 const QuoteBar = () => {
-    const quotesData = useTypedSelector((state) => state.data.data);
-    let randomQuoute = Math.floor(Math.random() * quotesData.length);
+    const { url, dispatch, quotesData, activeQuote } = useQuote();
+
+    useEffect(() => {
+        dispatch(fetchData(url));
+    }, [dispatch, url]);
+
     return (
         <div>
-            <div>
-                {quotesData[0].author === ""
-                    ? ""
-                    : `"${quotesData[randomQuoute].quote}"`}
-            </div>
-            <div>{quotesData[randomQuoute].author}</div>
+            <div>{quotesData.data[activeQuote].quote}</div>
+            <div>{quotesData.data[activeQuote].author}</div>
         </div>
     );
 };

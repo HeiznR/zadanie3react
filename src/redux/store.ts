@@ -1,8 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import fetchQuote from "./reducers/fetchQuote";
+import fetchingDataReducer from "./reducers/fetchingDataReducer";
+import setUpQuotesReducer from "./reducers/setUpQuotesReducer";
+
 const rootReducer = combineReducers({
-    data: fetchQuote,
+    fetch: fetchingDataReducer,
+    setUp: setUpQuotesReducer,
 });
 export type rootState = ReturnType<typeof rootReducer>;
 export const store = configureStore({
