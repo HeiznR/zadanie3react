@@ -1,0 +1,23 @@
+@mixin flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.quoteBar {
+    @include flex();
+    flex-grow: 1;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    & > :first-child {
+        font-weight: 200;
+        font-size: 22px;
+    }
+    & > :nth-child(2) {
+        width: 100%;
+        margin-top: 10px;
+        font-weight: 700;
+        font-size: 16px;
+    }
+}

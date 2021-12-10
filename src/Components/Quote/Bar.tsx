@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { fetchData } from "../../redux/actions/fetchData";
 import useQuote from "../../hooks/useQuote";
+import styles from "./Bar.module.scss";
 
 const QuoteBar = () => {
     const { url, dispatch, quotesData, activeQuote } = useQuote();
@@ -10,7 +11,7 @@ const QuoteBar = () => {
     }, [dispatch, url]);
 
     return (
-        <div>
+        <div className={styles.quoteBar}>
             <div>{quotesData.data[activeQuote].quote}</div>
             <div>{quotesData.data[activeQuote].author}</div>
         </div>
