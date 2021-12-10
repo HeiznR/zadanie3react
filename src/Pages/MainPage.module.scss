@@ -16,18 +16,5 @@
         display: flex;
         width: 100%;
         justify-content: space-around;
-        & > * {
-            border-radius: 5px;
-            padding: 5px 10px;
-            border: none;
-            font-size: 20px;
-            background-color: inherit;
-            cursor: pointer;
-            box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-            &:hover {
-                background-color: black;
-                color: white;
-            }
-        }
     }
 }

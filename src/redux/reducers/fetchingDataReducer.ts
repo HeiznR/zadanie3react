@@ -33,6 +33,9 @@ const fetchingDataReducer = createSlice({
             state.isErrorOccured = true;
             state.errorText = action.payload;
         },
+        closePopUp(state) {
+            state.isErrorOccured = false;
+        },
         setUpQuotes(state, action: PayloadAction<number>) {
             if (action.payload === 1) {
                 state.active = Math.floor(Math.random() * state.data.length);
@@ -46,5 +49,9 @@ const fetchingDataReducer = createSlice({
 });
 
 export default fetchingDataReducer.reducer;
-export const { fetchingDataSucces, fetchingDataError, setUpQuotes } =
-    fetchingDataReducer.actions;
+export const {
+    fetchingDataSucces,
+    fetchingDataError,
+    setUpQuotes,
+    closePopUp,
+} = fetchingDataReducer.actions;
