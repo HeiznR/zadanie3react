@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
     height: 100vh;
     font-family: "Roboto";
+    background-color: #4c9195;
+    color: white;
+    letter-spacing: 2px;
 }

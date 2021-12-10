@@ -11,13 +11,15 @@
     padding: 10px;
     margin-bottom: 20px;
     & > :first-child {
+        @include flex();
         font-weight: 200;
         font-size: 22px;
     }
     & > :nth-child(2) {
         width: 100%;
         margin-top: 10px;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 16px;
+        color: wheat;
     }
 }

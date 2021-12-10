@@ -4,7 +4,13 @@ import styles from "./Button.module.scss";
 
 const Button: FC<IButton> = ({ value, settingQuotes }) => {
     return (
-        <button className={styles.button} onClick={() => settingQuotes(value)}>
+        <button
+        disabled
+            className={styles.button}
+            onClick={() => {
+                settingQuotes(value);
+            }}
+        >
             {value}
         </button>
     );

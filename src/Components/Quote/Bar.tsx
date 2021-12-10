@@ -12,7 +12,7 @@ const QuoteBar = () => {
 
     return (
         <div className={styles.quoteBar}>
-            <div>{quotesData.data[activeQuote].quote}</div>
+            <div>{`"${quotesData.data[activeQuote].quote}"`}</div>
             <div>{quotesData.data[activeQuote].author}</div>
         </div>
     );
