@@ -4,7 +4,7 @@ import useQuote from "../../hooks/useQuote";
 import styles from "./Bar.module.scss";
 
 const QuoteBar = () => {
-    const { url, dispatch, quotesData, activeQuote } = useQuote();
+    const { url, dispatch, quotesData, activeIndex } = useQuote();
 
     useEffect(() => {
         dispatch(fetchData(url));
@@ -12,8 +12,8 @@ const QuoteBar = () => {
 
     return (
         <div className={styles.quoteBar}>
-            <div>{`"${quotesData.data[activeQuote].quote}"`}</div>
-            <div>{quotesData.data[activeQuote].author}</div>
+            <div>{`"${quotesData.data[activeIndex].quote}"`}</div>
+            <div>{quotesData.data[activeIndex].author}</div>
         </div>
     );
 };

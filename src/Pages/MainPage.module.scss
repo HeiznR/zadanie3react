@@ -1,19 +1,18 @@
 @mixin flex {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .qoute {
     @include flex();
+    flex-direction: column;
     padding: 30px;
     width: 500px;
     height: 30vh;
     border: 2px solid white;
     border-radius: 20px;
-
     & .qoute__buttons {
-        display: flex;
+        @include flex();
         width: 100%;
         justify-content: space-around;
     }

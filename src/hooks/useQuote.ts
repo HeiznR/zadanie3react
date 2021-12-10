@@ -1,26 +1,35 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUpQuotes } from "../redux/reducers/fetchingDataReducer";
+import {
+    setDisabledPrevQuoteButton,
+    setUpIndices,
+} from "../redux/reducers/fetchingDataReducer";
 import { useTypedSelector } from "./useTypedSelector";
 
 const useQuote = () => {
     const dispatch = useDispatch();
     const quotesData = useTypedSelector((state) => state.fetch);
     const url = String(process.env.REACT_APP_URL);
-    const activeQuote = quotesData.active;
+    const activeIndex = quotesData.activeIndex;
+    const isErrorOccured = quotesData.error.isErrorOccured;
+    const prevButtonDisabled = quotesData.prevButtonDisabled;
 
     const settingQuotes = (value: string) => {
         if (value === "New quote") {
-            dispatch(setUpQuotes(1));
+            dispatch(setUpIndices(true));
+            dispatch(setDisabledPrevQuoteButton(true));
         } else {
-            dispatch(setUpQuotes(0));
+            dispatch(setUpIndices(false));
+            dispatch(setDisabledPrevQuoteButton(false));
         }
     };
+
     return {
         quotesData,
-        settingQuotes,
+        isErrorOccured,
+        prevButtonDisabled,
+        activeIndex,
         url,
-        activeQuote,
+        settingQuotes,
         dispatch,
     };
 };

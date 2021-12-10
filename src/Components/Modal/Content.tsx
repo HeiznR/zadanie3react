@@ -6,7 +6,7 @@ import styles from "./Content.module.scss";
 
 const ModalContent: FC = () => {
     const dispatch = useDispatch();
-    const error = useTypedSelector((state) => state.fetch);
+    const error = useTypedSelector((state) => state.fetch.error);
     return (
         <div className={styles.content}>
             <div className={styles.content__message}>{error.errorText}</div>

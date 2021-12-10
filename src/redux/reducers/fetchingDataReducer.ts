@@ -1,24 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IError } from "../../types/IError";
 import { IResponseData } from "../../types/IResponseData";
 
 interface IProps {
     data: IResponseData[];
-    isErrorOccured: boolean;
-    errorText: string;
     massLength: number;
-    active: number;
-    prevQuote: number;
-    currentQuote: number;
+    error: IError;
+    activeIndex: number;
+    prevQuoteIndex: number;
+    currentQuoteIndex: number;
+    prevButtonDisabled: boolean;
 }
 
 const initialState: IProps = {
     data: [{ quote: "", author: "" }],
-    isErrorOccured: false,
-    errorText: "",
     massLength: 0,
-    active: 0,
-    prevQuote: -1,
-    currentQuote: 0,
+    error: { isErrorOccured: false, errorText: "" },
+    activeIndex: 0,
+    prevQuoteIndex: -1,
+    currentQuoteIndex: 0,
+    prevButtonDisabled: true,
 };
 
 const fetchingDataReducer = createSlice({
@@ -30,20 +31,25 @@ const fetchingDataReducer = createSlice({
             state.massLength = action.payload.length;
         },
         fetchingDataError(state, action: PayloadAction<string>) {
-            state.isErrorOccured = true;
-            state.errorText = action.payload;
+            state.error.isErrorOccured = true;
+            state.error.errorText = action.payload;
         },
         closePopUp(state) {
-            state.isErrorOccured = false;
+            state.error.isErrorOccured = false;
         },
-        setUpQuotes(state, action: PayloadAction<number>) {
-            if (action.payload === 1) {
-                state.active = Math.floor(Math.random() * state.data.length);
-            } else {
-                state.active = state.prevQuote;
-            }
-            state.prevQuote = state.currentQuote;
-            state.currentQuote = state.active;
+        setUpIndices(state, action: PayloadAction<boolean>) {
+            action.payload === true
+                ? (state.activeIndex = Math.floor(
+                      Math.random() * state.data.length
+                  ))
+                : (state.activeIndex = state.prevQuoteIndex);
+            state.prevQuoteIndex = state.currentQuoteIndex;
+            state.currentQuoteIndex = state.activeIndex;
+        },
+        setDisabledPrevQuoteButton(state, action: PayloadAction<boolean>) {
+            action.payload === true
+                ? (state.prevButtonDisabled = false)
+                : (state.prevButtonDisabled = true);
         },
     },
 });
@@ -52,6 +58,7 @@ export default fetchingDataReducer.reducer;
 export const {
     fetchingDataSucces,
     fetchingDataError,
-    setUpQuotes,
+    setUpIndices,
     closePopUp,
+    setDisabledPrevQuoteButton,
 } = fetchingDataReducer.actions;
